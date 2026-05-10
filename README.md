@@ -25,6 +25,8 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [bart-statutory-reference-checker](skills/bart-statutory-reference-checker/) | Kevan Wee | SG | Check statutory citations against Singapore statutes |
 | [nda-review](skills/nda-review/) | Jamie Tso | AG | One-way commercial NDA review with clause-by-clause issue logs |
 | [vibe-legal-batch-redliner](skills/vibe-legal-batch-redliner/) | Artur Serov | UK | Batch contract redlining with playbook-driven AI |
+| [lq-board-document-review](skills/lq-board-document-review/) | Legal Quants | MULTI | Four-category governance review: defined terms, cross-refs, matrix consistency, red flags |
+| [lq-governance-playbook-benchmark](skills/lq-governance-playbook-benchmark/) | Legal Quants | MULTI | Benchmark governance docs against LQ Playbook with five-tier classification |
 
 ## Installation
 
@@ -35,7 +37,6 @@ clawhub install lq-skills --registry https://github.com/LegalQuants/lq-skills
 
 ### Claude Code / Codex CLI
 ```bash
-# Via Superpowers marketplace or direct git clone
 git clone https://github.com/LegalQuants/lq-skills.git
 ```
 
