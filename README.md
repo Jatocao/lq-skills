@@ -30,6 +30,8 @@ Named contributions from individual Legal Quants members.
 | [vibe-legal-batch-redliner](skills/vibe-legal-batch-redliner/) | Artur Serov | UK | Batch contract redlining with playbook-driven AI |
 | [lq-board-document-review](skills/lq-board-document-review/) | Legal Quants | MULTI | Four-category governance review: defined terms, cross-refs, matrix consistency, red flags |
 | [lq-governance-playbook-benchmark](skills/lq-governance-playbook-benchmark/) | Legal Quants | MULTI | Benchmark governance docs against LQ Playbook with five-tier classification |
+| [classify-ccp](skills/classify-ccp/) | Leona Zhang | Agnostic | Classify treatment of Competition Compliance Programmes (CCPs) in competition-law enforcement documents — offence, defence, remedy, or irrelevant |
+| [adversarial-qc](skills/adversarial-qc/) | Alexios vdSK | Agnostic | Adversarial quality control for AI deliverables — two-agent parallel verification with checklist, agreements/disagreements flagged for human review |
 
 ## AnonLQ Skills
 
