@@ -67,4 +67,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT — see individual skill licenses.
+Apache License 2.0 for the project and AnonLQ-attributed skills (see [LICENSE](LICENSE)).
+
+Two community skills imported from their authors' own GitHub repos retain their original MIT licenses, which are compatible with Apache 2.0:
+
+- `skills/classify-ccp/` — MIT, Copyright Leona Zhang
+- `skills/adversarial-qc/` — MIT, Copyright Alexios van der Slikke-Kirillov
+
+Other community skills inherit the project-level Apache 2.0 license unless they include their own `LICENSE` file.
