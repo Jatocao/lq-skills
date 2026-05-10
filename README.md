@@ -8,9 +8,7 @@ A curated collection of skills built by the [Legal Quants](https://legalquants.c
 
 Most legal AI tools are black boxes. LQ skills are transparent, version-controlled, and practitioner-built — by lawyers who actually use them in production.
 
-## Community Skills
-
-Named contributions from individual Legal Quants members.
+## Skills
 
 | Skill | Author | Jurisdiction | Description |
 |-------|--------|--------------|-------------|
@@ -26,30 +24,25 @@ Named contributions from individual Legal Quants members.
 | [superdoc-redlines](skills/superdoc-redlines/) | Yu Chou Teo | SG | Multi-agent DOCX redlining with conflict resolution |
 | [nzbn-word-addin](skills/nzbn-word-addin/) | Joshua Wong | NZ | Validate NZ companies via NZBN register from Word |
 | [bart-statutory-reference-checker](skills/bart-statutory-reference-checker/) | Kevan Wee | SG | Check statutory citations against Singapore statutes |
-| [nda-review](skills/nda-review/) | Jamie Tso | AG | One-way commercial NDA review with clause-by-clause issue logs |
+| [nda-review](skills/nda-review/) | Jamie Tso | Agnostic | One-way commercial NDA review with clause-by-clause issue logs |
 | [vibe-legal-batch-redliner](skills/vibe-legal-batch-redliner/) | Artur Serov | UK | Batch contract redlining with playbook-driven AI |
 | [lq-board-document-review](skills/lq-board-document-review/) | Legal Quants | MULTI | Four-category governance review: defined terms, cross-refs, matrix consistency, red flags |
 | [lq-governance-playbook-benchmark](skills/lq-governance-playbook-benchmark/) | Legal Quants | MULTI | Benchmark governance docs against LQ Playbook with five-tier classification |
 | [classify-ccp](skills/classify-ccp/) | Leona Zhang | Agnostic | Classify treatment of Competition Compliance Programmes (CCPs) in competition-law enforcement documents — offence, defence, remedy, or irrelevant |
 | [adversarial-qc](skills/adversarial-qc/) | Alexios vdSK | Agnostic | Adversarial quality control for AI deliverables — two-agent parallel verification with checklist, agreements/disagreements flagged for human review |
+| [collating-reviewer-feedback](skills/collating-reviewer-feedback/) | AnonLQ | Agnostic | Compile DOCX comments and tracked changes into a lawyer-controlled resolution checklist |
+| [uk-citation-verification](skills/uk-citation-verification/) | AnonLQ | UK | Verify UK citations against public authority sources and flag hallucinated or mismatched authorities |
+| [proposition-checking](skills/proposition-checking/) | AnonLQ | Agnostic | Check whether cited materials actually support legal and factual propositions |
+| [building-chronologies](skills/building-chronologies/) | AnonLQ | Agnostic | Build sourced chronologies from legal documents, correspondence, disclosure, and pleadings |
+| [uk-witness-statement-review](skills/uk-witness-statement-review/) | AnonLQ | England and Wales | Review witness statements for source support, CPR compliance, and evidential risk |
+| [uk-particulars-of-claim-review](skills/uk-particulars-of-claim-review/) | AnonLQ | England and Wales | Review draft Particulars of Claim for pleaded elements, CPR/PD16 structure, remedies, and gaps |
+| [uk-disclosure-list-review](skills/uk-disclosure-list-review/) | AnonLQ | England and Wales | Review disclosure lists for document coverage, inspection objections, privilege flags, and adverse documents |
+| [uk-court-of-appeal-judicial-preference-check](skills/uk-court-of-appeal-judicial-preference-check/) | AnonLQ | England and Wales | Check appellate drafts against public-source Court of Appeal judicial preference signals |
+| [local-first-legal-workspace](skills/local-first-legal-workspace/) | AnonLQ | Agnostic | Audit privacy boundaries for local-first legal AI workspaces and BYOK workflows |
+| [legal-claim-economics](skills/legal-claim-economics/) | AnonLQ | Agnostic | Model claim economics, funding structures, fee arrangements, and recovery waterfalls |
+| [corporate-registry-investigation](skills/corporate-registry-investigation/) | AnonLQ | UK | Investigate UK companies using Companies House officers, PSCs, charges, and filings |
 
-## AnonLQ Skills
-
-Anonymised contributions under the AnonLQ banner. Each AnonLQ skill is self-contained with `SKILL.md`, `README.md`, `LICENSE`, `examples/output.md`, `references/*.md`, and `evals.yaml`. See [ACCESS-MODES.md](ACCESS-MODES.md) for source-handling guidance and [PR-READINESS.md](PR-READINESS.md) before submitting AnonLQ skills elsewhere.
-
-| Skill | Jurisdiction | Description |
-|-------|--------------|-------------|
-| [collating-reviewer-feedback](skills/collating-reviewer-feedback/) | Agnostic | Compile DOCX comments and tracked changes into a lawyer-controlled resolution checklist |
-| [uk-citation-verification](skills/uk-citation-verification/) | UK | Verify UK citations against public authority sources and flag hallucinated or mismatched authorities |
-| [proposition-checking](skills/proposition-checking/) | Agnostic | Check whether cited materials actually support legal and factual propositions |
-| [building-chronologies](skills/building-chronologies/) | Agnostic | Build sourced chronologies from legal documents, correspondence, disclosure, and pleadings |
-| [uk-witness-statement-review](skills/uk-witness-statement-review/) | England and Wales | Review witness statements for source support, CPR compliance, and evidential risk |
-| [uk-particulars-of-claim-review](skills/uk-particulars-of-claim-review/) | England and Wales | Review draft Particulars of Claim for pleaded elements, CPR/PD16 structure, remedies, and gaps |
-| [uk-disclosure-list-review](skills/uk-disclosure-list-review/) | England and Wales | Review disclosure lists for document coverage, inspection objections, privilege flags, and adverse documents |
-| [uk-court-of-appeal-judicial-preference-check](skills/uk-court-of-appeal-judicial-preference-check/) | England and Wales | Check appellate drafts against public-source Court of Appeal judicial preference signals |
-| [local-first-legal-workspace](skills/local-first-legal-workspace/) | Agnostic | Audit privacy boundaries for local-first legal AI workspaces and BYOK workflows |
-| [legal-claim-economics](skills/legal-claim-economics/) | Agnostic | Model claim economics, funding structures, fee arrangements, and recovery waterfalls |
-| [corporate-registry-investigation](skills/corporate-registry-investigation/) | UK | Investigate UK companies using Companies House officers, PSCs, charges, and filings |
+See [ACCESS-MODES.md](ACCESS-MODES.md) for source-handling conventions and [PR-READINESS.md](PR-READINESS.md) for the AnonLQ-attributed contribution checklist.
 
 ## Installation
 
