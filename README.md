@@ -26,8 +26,8 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [bart-statutory-reference-checker](skills/bart-statutory-reference-checker/) | Kevan Wee | SG | Check statutory citations against Singapore statutes |
 | [nda-review](skills/nda-review/) | Jamie Tso | Agnostic | One-way commercial NDA review with clause-by-clause issue logs |
 | [vibe-legal-batch-redliner](skills/vibe-legal-batch-redliner/) | Artur Serov | UK | Batch contract redlining with playbook-driven AI |
-| [lq-board-document-review](skills/lq-board-document-review/) | Legal Quants | MULTI | Four-category governance review: defined terms, cross-refs, matrix consistency, red flags |
-| [lq-governance-playbook-benchmark](skills/lq-governance-playbook-benchmark/) | Legal Quants | MULTI | Benchmark governance docs against LQ Playbook with five-tier classification |
+| [lq-board-document-review](skills/lq-board-document-review/) | Alexios vdSK | MULTI | Four-category governance review: defined terms, cross-refs, matrix consistency, red flags |
+| [lq-governance-playbook-benchmark](skills/lq-governance-playbook-benchmark/) | Alexios vdSK | MULTI | Benchmark governance docs against LQ Playbook with five-tier classification |
 | [classify-ccp](skills/classify-ccp/) | Leona Zhang | Agnostic | Classify treatment of Competition Compliance Programmes (CCPs) in competition-law enforcement documents — offence, defence, remedy, or irrelevant |
 | [adversarial-qc](skills/adversarial-qc/) | Alexios vdSK | Agnostic | Adversarial quality control for AI deliverables — two-agent parallel verification with checklist, agreements/disagreements flagged for human review |
 | [collating-reviewer-feedback](skills/collating-reviewer-feedback/) | AnonLQ | Agnostic | Compile DOCX comments and tracked changes into a lawyer-controlled resolution checklist |
