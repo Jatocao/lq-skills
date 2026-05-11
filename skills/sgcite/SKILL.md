@@ -3,6 +3,8 @@ name: sgcite
 description: Use when verifying Singapore court citations in legal submissions, checking for hallucinated cases in AI-generated text, or validating citations against eLitigation.
 author: Yu Chou Teo
 jurisdiction: SG
+version: 1.0.0
+last_reviewed: 2026-05
 tags: [citation, singapore, legal-research, hallucination-detection, elitigation]
 ---
 
@@ -49,6 +51,41 @@ npx sgcite check ./my-submission.docx
 ```
 
 Or import as a library in your legal workflow tools.
+
+## Audience and Work Shape
+
+Audience: Singapore-qualified lawyers, paralegals, and litigation-support teams running a pre-filing or pre-circulation citation check. Not for unsupervised drafting or non-lawyer use.
+
+Work shape: Pattern-Matched Review. Each citation is checked against a known reference (eLitigation). Output is a list of findings, not a sign-off.
+
+## Scope and Legal Use
+
+This skill provides legal *support*, not legal advice. A `verified` result means "the cited case was found in eLitigation with matching party names" — not "this citation is correctly used in your submission" and not "this submission is fit to file."
+
+**Privilege and confidentiality.** sgcite sends extracted citation text (and quoted passages, when checking for distorted quotations) to eLitigation. Do not invoke on privileged or unfiled draft material unless your firm has assessed that routing the cited extracts through a public case-law database is acceptable. Configure the tool to send citation strings only (not surrounding context) where possible.
+
+**Accountability.** A qualified lawyer must review each flagged and each `verified` citation before filing or circulating the submission. The skill does not sign off on accuracy of use, substantive correctness, or fitness to file.
+
+## Confidence Bands
+
+- **High** — citation extracted cleanly, eLitigation returns an exact match on case name and citation reference.
+- **Medium** — citation matched on case name or reference but with a fuzzy hit, neutral citation variant, or paragraph reference not present in the source. Flag for lawyer review.
+- **Low / Review** — possible distorted quotation, ambiguous case name, non-SG citation in input, or eLitigation lookup failed. Do not present as `verified`; route to REVIEW.
+
+## Out of Scope
+
+- Does not check substantive accuracy of cited holdings or whether the citation supports the proposition advanced.
+- Does not cover non-Singapore citations or unreported decisions outside eLitigation.
+- Does not constitute citation-review or quality-control sign-off for purposes of professional rules.
+- Does not handle PDPA, privilege, or confidentiality-by-design — the user controls what text is passed in.
+
+## Escalation
+
+Stop and route to the responsible lawyer when:
+- a citation cannot be resolved with High confidence after one pass;
+- quoted text in the submission differs materially from the eLitigation source;
+- the input appears to contain non-SG citations (treat as unsupported by this skill);
+- the input contains material that may be privileged and the firm has not approved external lookups.
 
 ## Limitations
 

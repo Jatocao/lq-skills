@@ -3,6 +3,8 @@ name: office-word-diff
 description: Use when you need to apply word-level tracked changes to Microsoft Word documents programmatically, preserve formatting through diffs, or integrate with Office.js for document transformation.
 author: Yu Chou Teo
 jurisdiction: SG
+version: 1.0.0
+last_reviewed: 2026-05
 tags: [word, office-js, tracked-changes, docx, diff, document-processing]
 ---
 
@@ -47,6 +49,44 @@ const result = await diffWords(oldDoc, newDoc, {
 - **Nested structures** — Handles tables, lists, headers correctly
 - **Agent-compatible** — Works with Claude Code, Gemini CLI, Codex as backend
 - **Deterministic** — Same input produces same output (unlike fragile text-matching approaches)
+
+## Audience and Work Shape
+
+Audience: lawyers and developers building Word add-ins or document-transformation tools that emit native tracked changes. Output is consumed by Microsoft Word and ultimately signed off by a lawyer.
+
+Work shape: Bounded Transactional. The skill applies a defined set of word-level edits to a DOCX and emits revised DOCX. It does not decide which edits to apply.
+
+## Scope and Legal Use
+
+This skill provides legal *support*, not legal advice. The output is a DOCX with tracked changes — not a redlined version that is approved, signed off, or fit to send to counterparties or file with a court.
+
+**Privilege and confidentiality.** Runs client-side via Office.js. No network calls. The skill does not transmit document content anywhere. Privilege exposure depends entirely on what the calling application does with the input and output — the lawyer must control the data flow.
+
+**Accountability.** A qualified lawyer must review every tracked change in the output before accepting, sending, filing, or storing the revised document. The author field (`author: 'LQClaw'` in the usage example) makes the AI origin visible in Word's revision metadata — keep that visible rather than masking it as a human author.
+
+## Confidence Bands
+
+The diff itself is deterministic, but the *upstream* generation of `newDoc` (from an AI agent) is not. Tag tracked changes with confidence from the upstream agent where possible:
+
+- **High** — small, scoped edit (typo, defined-term substitution, cross-reference fix).
+- **Medium** — clause rewrites, paragraph reordering, or any substantive change. Always lawyer-reviewed.
+- **Low** — multi-clause or whole-section rewrites. Treat as a draft proposal, not a redline.
+
+## Out of Scope
+
+- Not for **executed contracts** without separate amendment-protocol controls.
+- Not for **documents under litigation hold** or e-discovery where original metadata must be preserved.
+- Not a final-send step — never auto-accept changes and transmit.
+- Not for documents with **DRM, IRM, or rights-managed protection** (will fail or strip protection).
+- Not for documents with pre-existing **unaccepted tracked changes** unless explicitly handled by the calling tool (state must be reconciled first).
+
+## Escalation
+
+Stop and route to the responsible lawyer when:
+- a nested-table edit cannot be applied without structural loss;
+- the input DOCX has pre-existing unaccepted tracked changes from another author;
+- the upstream agent produced a Low-confidence edit set or contradictory edits;
+- the document is rights-managed, encrypted, or under a litigation hold.
 
 ## Limitations
 
