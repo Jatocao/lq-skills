@@ -41,15 +41,18 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [local-first-legal-workspace](skills/local-first-legal-workspace/) | AnonLQ | Agnostic | Audit privacy boundaries for local-first legal AI workspaces and BYOK workflows |
 | [legal-claim-economics](skills/legal-claim-economics/) | AnonLQ | Agnostic | Model claim economics, funding structures, fee arrangements, and recovery waterfalls |
 | [corporate-registry-investigation](skills/corporate-registry-investigation/) | AnonLQ | UK | Investigate UK companies using Companies House officers, PSCs, charges, and filings |
-| [action-items-from-client-alert](skills/action-items-from-client-alert/) | Legal Quants | Agnostic | Extract time-sensitive action items, deadlines, and obligations from client alerts/bulletins into a deadline-organized checklist |
-| [comms-improver](skills/comms-improver/) | Legal Quants | Agnostic | Rewrite legal-jargon-heavy text into plain language for a specified non-legal audience |
-| [contract-qa](skills/contract-qa/) | Legal Quants | Agnostic | Answer specific questions about a loaded contract — meaning, location, unusualness, comparison, scenario analysis — with verbatim citations |
-| [dpa-checklist-review](skills/dpa-checklist-review/) | Legal Quants | Multi-regime | Score a DPA/BAA against required terms under GDPR Art 28, US state privacy laws, or HIPAA |
-| [enhance-prompt](skills/enhance-prompt/) | Legal Quants | Agnostic | Rewrite a short/vague prompt into a structured legal prompt with role, jurisdiction, task, constraints, and output format |
-| [msa-review-commercial-purchase](skills/msa-review-commercial-purchase/) | Legal Quants | US | Review Master Purchase/Supply/Goods Agreements with severity-rated findings, redlines, and buyer/supplier-calibrated assessment |
-| [msa-review-saas](skills/msa-review-saas/) | Legal Quants | US | Review SaaS MSAs/Subscription Agreements with severity-rated findings, redlines, and vendor/customer-calibrated assessment |
-| [skill-creator](skills/skill-creator/) | Legal Quants | Meta | Conduct focused conversation to elicit a skill's behaviour and produce a complete skill folder ready to save |
-| [vendor-privacy-policy-first-pass](skills/vendor-privacy-policy-first-pass/) | Legal Quants | Multi-regime | Fast triage of a vendor privacy policy — what it says, red flags warranting escalation |
+| [action-items-from-client-alert](skills/action-items-from-client-alert/) | Kevin Keller | Agnostic | Extract time-sensitive action items, deadlines, and obligations from client alerts/bulletins into a deadline-organized checklist |
+| [comms-improver](skills/comms-improver/) | Kevin Keller | Agnostic | Rewrite legal-jargon-heavy text into plain language for a specified non-legal audience |
+| [contract-qa](skills/contract-qa/) | Kevin Keller | Agnostic | Answer specific questions about a loaded contract — meaning, location, unusualness, comparison, scenario analysis — with verbatim citations |
+| [dpa-checklist-review](skills/dpa-checklist-review/) | Kevin Keller | Multi-regime | Score a DPA/BAA against required terms under GDPR Art 28, US state privacy laws, or HIPAA |
+| [enhance-prompt](skills/enhance-prompt/) | Kevin Keller | Agnostic | Rewrite a short/vague prompt into a structured legal prompt with role, jurisdiction, task, constraints, and output format |
+| [msa-review-commercial-purchase](skills/msa-review-commercial-purchase/) | Kevin Keller | US | Review Master Purchase/Supply/Goods Agreements with severity-rated findings, redlines, and buyer/supplier-calibrated assessment |
+| [msa-review-saas](skills/msa-review-saas/) | Kevin Keller | US | Review SaaS MSAs/Subscription Agreements with severity-rated findings, redlines, and vendor/customer-calibrated assessment |
+| [skill-creator](skills/skill-creator/) | Kevin Keller | Meta | Conduct focused conversation to elicit a skill's behaviour and produce a complete skill folder ready to save |
+| [vendor-privacy-policy-first-pass](skills/vendor-privacy-policy-first-pass/) | Kevin Keller | Multi-regime | Fast triage of a vendor privacy policy — what it says, red flags warranting escalation |
+| [coquill](skills/coquill/) | Hou Fu Ang | Agnostic | Document assembly orchestrator — matches user requests to docx/HTML templates, interviews for variables, renders documents. Bundles three internal sub-skills (`coquill-analyzer`, `coquill-renderer`, `coquill-transcriber`) used by the orchestrator |
+| [foreign-law-research](skills/foreign-law-research/) | Chong Liu | Multi-jurisdiction | Researching foreign law questions with structured workflow, source authority hierarchy, timeliness grading, and smart navigation |
+| [legal-translation](skills/legal-translation/) | Arjun Singh Chouhan | Agnostic | Legal document translation that understands law, not just language — covers all language pairs, transliteration, bilingual documents, and legal terminology lookups |
 
 See [ACCESS-MODES.md](ACCESS-MODES.md) for source-handling conventions, [PR-READINESS.md](PR-READINESS.md) for the AnonLQ-attributed contribution checklist, and [skills/CONTRIBUTING.md](skills/CONTRIBUTING.md) for the higher-bar process applied to skills carrying legal substance.
 
@@ -78,9 +81,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Apache License 2.0 for the project and AnonLQ-attributed skills (see [LICENSE](LICENSE)).
 
-Two community skills imported from their authors' own GitHub repos retain their original MIT licenses, which are compatible with Apache 2.0:
+Several community skills imported from their authors' own GitHub repos retain their original MIT licenses, which are compatible with Apache 2.0:
 
 - `skills/classify-ccp/` — MIT, Copyright Leona Zhang
 - `skills/adversarial-qc/` — MIT, Copyright Alexios van der Slikke-Kirillov
+- `skills/coquill/` (and `coquill-analyzer`, `coquill-renderer`, `coquill-transcriber`) — MIT, Copyright Ang Hou Fu
+- `skills/foreign-law-research/` — MIT, Copyright Chong Liu
+- `skills/legal-translation/` — MIT, Copyright Arjun Singh Chouhan
 
 Other community skills inherit the project-level Apache 2.0 license unless they include their own `LICENSE` file.
