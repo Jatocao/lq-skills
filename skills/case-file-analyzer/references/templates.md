@@ -22,3 +22,29 @@ Depending on the active step in `PRD.md` and the configuration in configuration.
     [Bullet points of the legal arguments or statutes with quotes from the source if configured.]
   </legal_views>
 </document_summary>
+```
+
+### Step 2: Synthesis
+*Write to `final_synthesis.xml`*
+
+```xml
+<qc_and_synthesis_certificate>
+  <review_metadata>
+    <perspective_applied>[State the perspective used in Step 2]</perspective_applied>
+    <files_reviewed>[List of all files synthesized]</files_reviewed>
+    <status>[PASS / FAIL / REVIEW REQUIRED]</status>
+  </review_metadata>
+
+  <timeline_overview>
+    [A synthesized, chronological timeline of the key <fact> events across all processed XML summaries.]
+  </timeline_overview>
+  
+  <contradictions_and_discrepancies>
+    [Identify where opinions/claims in one document clash with facts or claims in another document.]
+  </contradictions_and_discrepancies>
+  
+  <holistic_assessment>
+    [A comprehensive summary of the entire case. What is the core conflict and factual discrepancies? What are the primary strengths and weaknesses of the overarching positions? What is uncertain and why?]
+  </holistic_assessment>
+</qc_and_synthesis_certificate>
+```
