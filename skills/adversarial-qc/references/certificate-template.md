@@ -85,9 +85,14 @@ Generate an HTML file with this structure, then convert to PDF.
 
 ## PDF Conversion
 
-Convert using Chromium headless:
+Convert using Chromium headless with the sandbox enabled. **Do not** pass `--no-sandbox` — that flag disables Chromium's renderer sandbox and is a real security regression, not a stylistic choice. PDF rendering does not require it.
+
 ```bash
-chromium --headless --disable-gpu --no-sandbox --print-to-pdf=output.pdf --print-to-pdf-no-header input.html
+chromium --headless --disable-gpu --print-to-pdf=output.pdf --print-to-pdf-no-header input.html
 ```
+
+If you hit a sandbox error in an environment where the Chromium sandbox cannot be initialised (some CI runners, some container images), the correct fix is to run Chromium inside a properly configured sandbox (e.g., a Docker image with `--cap-add SYS_ADMIN` or a chrome-headless-shell image with the suid sandbox installed) — **not** to remove `--sandbox`. As an alternative, use a pure-Python renderer such as `weasyprint` or `playwright` with default sandboxing.
+
+**Output path.** Pin `output.pdf` to the matter workspace or a defined skill-output directory (e.g., `./qc-certificates/<deliverable>-<timestamp>.pdf`). Do not write to `cwd` without confirming the location — the certificate is a permanent record and should sit alongside the deliverable it certifies, not in a general-purpose directory.
 
 Or use a local HTTP server if the HTML has external resources.

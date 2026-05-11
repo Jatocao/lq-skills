@@ -11,11 +11,63 @@ description: >
   orders, power of attorney, wills, leases, legal notices, petitions, appeals,
   corporate filings, immigration docs, IP agreements, employment contracts, and any
   other legal instrument. ALWAYS use this skill when both law and language are involved.
+author: Arjun Singh Chouhan
+version: 1.0.0
+last_reviewed: 2026-05
+last_reviewed_by: LegalQuants (QA remediation)
 ---
 
 # Legal Translation Skill
 
 **Beyond literal. Beyond generic. This is legal translation that thinks like a lawyer.**
+
+## Audience and Work Shape
+
+Audience: Bilingual lawyers, qualified legal translators, and in-house counsel reviewing AI-assisted draft translations of legal instruments before client, counterparty, or court use. Not for end-clients or business users self-serving translations of binding instruments without lawyer oversight.
+
+Work shape: Accretive Judgment. The output is a draft translation accompanied by translator's notes, jurisdictional flags, and a confidence-banded glossary — it is a starting point for a bilingual reviewer, not a final-form instrument. Every output must carry a "DRAFT — bilingual lawyer review required before execution" header.
+
+## Scope and Legal Use
+
+This skill provides legal *translation support*, not legal advice or a certified/sworn translation. Three legal failure modes are addressed head-on:
+
+1. **Legal advice vs. legal support.** The skill produces a draft translation. Interpretation of legal effect in the target jurisdiction — whether the translated operative clause carries the same enforceability, whether a term of art has the same scope, whether the document is fit for its intended use — is the local lawyer's call. The skill never opines on whether a translation is "good enough" to sign, file, or rely on.
+
+2. **Privilege implications.** Legal translations frequently involve privileged communications, executed contracts, work-product material, and court filings. Routing privileged or work-product material through a translation tool may break privilege if the translator (or the AI service) sits outside the privilege circle. Before invoking this skill on privileged material, the responsible lawyer must confirm that (a) the AI service is within the engagement letter's permitted-disclosure scope, and (b) the bilingual reviewer is named within privilege. If either is unclear — stop and escalate.
+
+3. **Accountability gap.** This skill does not produce a certified or sworn translation, and does not constitute a signed translator's affidavit for purposes of court filing, apostille, or any official submission. Accountability for the final translation — including legal effect, terminology accuracy, and fitness for use — rests with the named bilingual lawyer or sworn translator in the engagement, not with the skill or its output.
+
+## Confidence Bands
+
+Every translation output must mark each clause or section H/M/L for terminology certainty:
+
+- **High (H)** — standard term with a direct, well-attested equivalent in the target legal system (e.g., "purchase price" → standard contract-law term). Safe for lawyer sign-off after routine review.
+- **Medium (M)** — term-of-art with a documented equivalent but with jurisdictional drift possible (e.g., "indemnity" across common-law and civil-law systems; "force majeure" between French and English drafting conventions). Flag for the bilingual reviewer to confirm legal effect in the target jurisdiction.
+- **Low (L)** — no direct equivalent; explanatory translation only (e.g., "stamp duty" into US-law context; "tort" into civil-law systems; certain Sharia-finance constructs into Anglo-common-law). Must be expressly flagged in translator's notes as requiring local-counsel input before reliance.
+
+When a clause contains an L-band term that carries material legal effect, the output must halt translation of that clause and route to escalation rather than silently substituting an approximation.
+
+## Out of Scope
+
+This skill does NOT cover:
+
+- **Certified, sworn, or official translations** for court filing, apostille, immigration submission, or any official use that requires a credentialed translator's affidavit. Route to a sworn/official translator in the relevant jurisdiction.
+- **Apostilled documents** where the translation must itself be re-apostilled or where the apostille's integrity depends on translation provenance.
+- **Jurisdictions with statutory restrictions on AI-translated legal instruments**, including any jurisdiction that bars machine-assisted translation of court filings or notarial instruments. The user must confirm the target jurisdiction does not impose such restrictions.
+- **Any document where the user cannot identify a bilingual reviewer** in the target jurisdiction. Without an accountable reviewer, the skill should not produce a final-form output.
+- **Substantive legal advice** on the enforceability, validity, or interpretation of the source or translated document.
+
+## Escalation
+
+Stop and ask the user (or route to the responsible lawyer) when:
+
+- Document type cannot be identified from the source.
+- Source jurisdiction OR target jurisdiction is unclear or unstated. Do not proceed with assumed jurisdiction.
+- The document contains untranslatable terms of art with material legal effect (L-band clauses).
+- The request is for a certified/sworn output, an apostilled translation, or a translation intended for court filing in a jurisdiction with AI-translation restrictions.
+- The source material appears privileged or work-product and the user has not confirmed the AI service and bilingual reviewer sit within the privilege circle.
+- There is a conflict between the source jurisdiction in the document header and the parties' addresses or the governing-law clause.
+- The user cannot name the bilingual reviewer who will sign off on the final translation.
 
 This skill is the international extension of **Modern Jurist** — a legal translation
 app originally built for the Indian legal ecosystem (English ↔ Hindi, Marathi, Gujarati,
@@ -275,3 +327,18 @@ Read these when needed — do not load all at once:
 - `references/legal-glossary.md` — ~80 core legal terms translated across 12 languages. Read for any specific term lookup or to verify your translation choices.
 - `references/legal-language-conventions.md` — Document conventions, formal openings/closings, script rules, and jurisdiction notes for major legal languages.
 - `references/document-type-library.md` — Full templates and structural patterns for 12 document types across languages.
+
+---
+
+## QA Remediation (LegalQuants, 2026-05)
+
+This skill was QA-reviewed against the Legal Skill Design Framework on 2026-05-11. The original author (Arjun Singh Chouhan) retains attribution for the underlying skill, its four-layer model, the pre-translation glossary workflow, the document-type library, and the language-convention references. LegalQuants applied the following remediations without altering the substantive translation methodology:
+
+- Added Audience and Work Shape (Accretive Judgment) — output framed as a draft for a bilingual reviewer, not a final-form instrument.
+- Added Scope and Legal Use addressing the three mandatory legal failure modes: (i) legal advice vs. legal support, (ii) privilege implications for translations of privileged/work-product material, (iii) accountability gap (this skill does not produce certified or sworn translations).
+- Added Confidence Bands (H/M/L) tied to terminology certainty in the target legal system, with explicit handling for L-band material-effect clauses.
+- Added Out of Scope block carving out certified/sworn translations, apostilled documents, restricted jurisdictions, and any document without an identified bilingual reviewer.
+- Added Escalation triggers as explicit halt-and-ask rules rather than buried in the translator's-notes step.
+- Added version, last_reviewed, and last_reviewed_by frontmatter fields.
+
+The technical workflow (Steps 1–6), document-type library, language-pair coverage, file handling, and reference-file structure are unchanged.
