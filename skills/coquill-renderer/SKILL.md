@@ -1,7 +1,15 @@
 ---
 name: coquill-renderer
 description: "Document renderer for CoQuill. Takes a template, variable values, and produces rendered documents (docx or html+pdf). Validates output for unfilled placeholders. Called by the coquill orchestrator — not triggered directly by the user."
+author: Hou Fu Ang
+version: 0.1.0
+last_reviewed: 2026-05
+last_reviewed_by: LegalQuants (QA remediation)
 ---
+
+> **Note — missing render script.** The `scripts/render.py` referenced below is **not bundled in this skill directory**. The canonical rendering, boolean coercion, validation, and PDF-conversion logic lives in the upstream `houfu/coquill` repository. Before invoking this skill, the agent MUST verify that `scripts/render.py` is resolvable at `$CLAUDE_PLUGIN_ROOT/scripts/render.py` (or an equivalent project-root path). If the script cannot be located, **halt and return an error to the orchestrator — do not silently produce unverified output**.
+>
+> **Validation requirement.** Rendered output MUST be verified for unfilled placeholders (`{{ var }}`) and unprocessed control tags (`{% %}`) before being treated as complete. A document that has not been validated, or that fails validation, must NOT be delivered to the user.
 
 # CoQuill — Document Renderer (v2)
 
@@ -88,3 +96,19 @@ Return to the orchestrator:
 
 - **For docx templates**, always use `docxtpl` — not raw python-docx with string replacement. `docxtpl` preserves formatting around placeholders and natively supports Jinja2 control tags.
 - **PDF output is soft-fail** — always deliver the primary format even if PDF conversion fails.
+
+## QA Remediation (LegalQuants, 2026-05)
+
+Reviewed by LegalQuants against the Legal Skill Design Framework on 2026-05-11; verdict: SOME CONCERN. The load-bearing `scripts/render.py` is absent from this skill directory and lives in the upstream `houfu/coquill` repo, so the rendering, boolean coercion, validation, and PDF-conversion logic could not be inspected at the LegalQuants registry layer.
+
+Remediation applied in this file:
+- Added a frontmatter note flagging that `scripts/render.py` is not bundled; on invocation, the agent must verify the script is available and halt rather than silently producing unverified output.
+- Added an explicit validation requirement: rendered output must be checked for unfilled placeholders and unprocessed control tags before being treated as complete.
+- Added `version: 0.1.0`, `last_reviewed: 2026-05`, and `last_reviewed_by: LegalQuants (QA remediation)` to frontmatter. Hou Fu Ang retained as author.
+
+Not remediated here (defers to upstream / orchestrator):
+- Shipping `scripts/render.py` alongside the skill so its behaviour can be reviewed at this layer — this is an upstream decision for `houfu/coquill`.
+- Legal-advice / privilege / accountability concerns — these sit at the parent `coquill` orchestrator and the requesting user, not this rendering layer.
+- Explicit "not in scope" enumeration (variable correctness, legal sufficiency, e-signature, delivery, persistence beyond the job folder) — left to upstream copy edits; the structural-completion-only posture is now stated via the validation-requirement note above.
+
+Technical content of the renderer (inputs, output structure, render-script invocation, Cowork fallback, validation interpretation, reporting, soft-fail PDF semantics) is unchanged.
