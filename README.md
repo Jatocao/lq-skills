@@ -52,6 +52,8 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [coquill](skills/coquill/) | Hou Fu Ang | Agnostic | Document assembly orchestrator — matches user requests to docx/HTML templates, interviews for variables, renders documents. Bundles three internal sub-skills (`coquill-analyzer`, `coquill-renderer`, `coquill-transcriber`) used by the orchestrator |
 | [foreign-law-research](skills/foreign-law-research/) | Chong Liu | Multi-jurisdiction | Researching foreign law questions with structured workflow, source authority hierarchy, timeliness grading, and smart navigation |
 | [legal-translation](skills/legal-translation/) | Arjun Singh Chouhan | Agnostic | Legal document translation that understands law, not just language — covers all language pairs, transliteration, bilingual documents, and legal terminology lookups |
+| [california-property-tax](skills/california-property-tax/) | Legal Quants community | US-CA | California property tax research workflow using BOE Property Tax Rules (462.* change of ownership) and PTLG annotations (220.*); rule/annotation synthesis applied to user facts |
+| [case-file-analyzer](skills/case-file-analyzer/) | Dennis G. Jansen | Agnostic | Stateless R.A.L.P.H.-pattern agent for adversarial case-file analysis — extracts facts/claims/legal views into XML metadata across large directories, then synthesizes contradictions and timeline. Proof of concept |
 
 See [ACCESS-MODES.md](ACCESS-MODES.md) for source-handling conventions, [PR-READINESS.md](PR-READINESS.md) for the AnonLQ-attributed contribution checklist, and [skills/CONTRIBUTING.md](skills/CONTRIBUTING.md) for the higher-bar process applied to skills carrying legal substance.
 
