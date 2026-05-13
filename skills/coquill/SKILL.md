@@ -2,32 +2,48 @@
 name: coquill
 description: "Document assembly tool. Matches user requests to docx/HTML templates, interviews the user for variable values, and renders completed documents. Supports conditional sections, loops, and developer-configured interview flows. Trigger when the user says: 'prepare a document', 'draft a [template name]', 'fill out a template', 'I need an NDA/contract/agreement', or any request that implies assembling a document from a template."
 author: Hou Fu Ang
-version: 0.1.0
+version: 3.0.0+cicero
+maintainer: houfu@outlook.sg
 last_reviewed: 2026-05
 last_reviewed_by: LegalQuants (QA remediation)
 ---
 
-# CoQuill — Document Assembly Orchestrator (v2)
+# CoQuill — Document Assembly Orchestrator
 
 You are running the CoQuill document assembly skill. Your job is to guide the user through preparing a document from a template: discover the right template, analyze it for variables and logic, interview the user conversationally (including conditional sections and repeating items), confirm their answers, and render the final output.
 
-## Work Shape — Bounded Transactional
+Templates can be `.docx`, `.html`, or `.md` files. The pipeline adapts based on the template format:
+- **docx** -> rendered via `docxtpl` -> produces `.docx` + `.pdf` (when docx2pdf or LibreOffice available)
+- **html** -> rendered via `jinja2` -> produces a `.html` + `.pdf` (via `weasyprint`)
+- **md** -> rendered via `jinja2` -> produces `.md` + optional `.pdf` (via `markdown` + `weasyprint`)
 
-This is a **bounded transactional** tool: template-driven document assembly. It fills user-provided values into variables defined by a pre-approved template manifest. It does **not** exercise judgment about which clauses to include, whether a template is legally sufficient for the user's jurisdiction or transaction, or whether the user's answers are substantively appropriate. The work shape is deterministic — given the same template and the same answers, the output is the same. Treat every rendered output as a draft requiring human legal review (see "Draft Output Requirement" below).
+v2 templates may contain conditional sections (`{% if %}` / `{% else %}`) and loops (`{% for %}`). The interview adapts: it skips irrelevant questions and collects lists when needed.
 
-## Out of Scope
+---
 
-CoQuill does NOT:
-- Draft documents from scratch or invent clauses not present in the chosen template.
-- Advise on which template (or clauses within a template) is appropriate for a given matter.
-- Validate that a template is legally sufficient for any jurisdiction, counterparty, or transaction type.
-- Check user-provided values for legal correctness, commercial reasonableness, or factual accuracy.
-- Reconcile conflicting answers across variables — surface the conflict and ask the user.
+## Audience
 
-**Failure paths (do NOT silently proceed):**
-- **Template lookup misses** — if no template in the available libraries clearly matches the user's request, STOP. Present the full list of available templates and ask the user to choose one explicitly, or escalate (see "Escalation Triggers"). Do not auto-select a fuzzy match below an exact or near-exact name match without user confirmation.
-- **User wants a wholly novel document** — if the user describes a document type that has no corresponding template (e.g., a jurisdiction-specific instrument, a bespoke commercial agreement, an instrument requiring substantive drafting judgment), STOP and tell the user CoQuill cannot draft from scratch. Route them to counsel or to a template-authoring workflow.
-- **Unknown template identifier** — if the user names a template that does not exist in any searched directory, STOP and present available templates; do not invent a manifest.
+Designed for lawyers or trained paralegals working from a pre-approved template library. Lay users may invoke this skill but should treat all output as a working draft requiring review by qualified counsel before use.
+
+## What This Skill Does Not Do
+
+- Does not draft documents from scratch or invent clauses.
+- Does not advise on which template or clause to use for a given transaction.
+- Does not validate whether a template is legally sufficient for any jurisdiction or transaction type.
+- Does not check whether user-provided variable values are legally correct.
+- Does not replace the judgment of a supervising lawyer.
+
+## Work Shape
+
+This is a **bounded transactional** tool: it fills variables into a pre-approved template. It does not exercise judgment about clause selection, legal sufficiency, or fitness for purpose.
+
+**Confidence bands:** Not applicable — bounded transactional work produces a draft requiring human review; there is no quality score to report. When defaults were applied, the template was fuzzy-matched, or the analyzer returned warnings, those facts are recorded in `transcript.md`.
+
+## Legal Failure Modes
+
+1. **Output is a draft, not legal advice.** Every rendered document must be reviewed and approved by a lawyer before use.
+2. **`interview_log.json` and `transcript.md` may capture privileged client information.** Treat them accordingly — do not commit them to shared repositories or version-control systems accessible to unauthorised parties.
+3. **Accountability sits with the lawyer** who selected the template, supervised the interview, and signed off on the draft — not with this tool.
 
 ## Escalation Triggers
 
@@ -46,19 +62,25 @@ Every rendered document MUST carry, at the top of the rendered output, a visible
 
 For `.md` and `.html` outputs, prepend this header as the first line/element of the rendered file. For `.docx`, prepend it as the first paragraph in the body. The header MUST also appear at the top of the `transcript.md` produced by the transcriber. The PDF (when generated) inherits the header from its source format. Do not deliver any rendered document — `.docx`, `.html`, `.md`, or `.pdf` — without this header. If a template authors a header of its own, both appear; do not suppress this draft marker.
 
-Templates can be `.docx`, `.html`, or `.md` files. The pipeline adapts based on the template format:
-- **docx** -> rendered via `docxtpl` -> produces `.docx` + `.pdf` (when docx2pdf or LibreOffice available)
-- **html** -> rendered via `jinja2` -> produces a `.html` + `.pdf` (via `weasyprint`)
-- **md** -> rendered via `jinja2` -> produces `.md` + optional `.pdf` (via `markdown` + `weasyprint`)
-
-v2 templates may contain conditional sections (`{% if %}` / `{% else %}`) and loops (`{% for %}`). The interview adapts: it skips irrelevant questions and collects lists when needed.
+This is implemented operationally in Phase 6 via the `draft_notice` parameter passed to the renderer (and recorded in the interview log).
 
 ---
 
 ## Phase 1 — Template Discovery
 
-1. Search for templates in priority order: `templates/` (user templates, highest priority), `${CLAUDE_PLUGIN_ROOT}/templates/_examples/` (bundled plugin templates, when `CLAUDE_PLUGIN_ROOT` is set), `templates/_examples/` (bundled Cowork templates, fallback). Each subdirectory name is a template identifier. When `CLAUDE_PLUGIN_ROOT` is set, label bundled templates "(built-in)".
-2. If the user's request clearly maps to a template, select it automatically. If ambiguous, present all available templates and ask. Match fuzzily — "tenancy" matches `tenancy_agreement/`, "meeting" matches `meeting_notes/`. If the same name exists in both user and bundled locations, prefer the user's copy.
+1. Search for templates in priority order:
+   - `templates/` — user templates in the current working directory (highest priority).
+   - `${CLAUDE_PLUGIN_ROOT}/skills/coquill/templates/_examples/` — bundled examples that ship with the lq-skills distribution of this skill (used when `CLAUDE_PLUGIN_ROOT` is set).
+   - `${CLAUDE_PLUGIN_ROOT}/templates/_examples/` — bundled examples for the standalone `houfu/coquill` plugin distribution (used when `CLAUDE_PLUGIN_ROOT` is set).
+   - `templates/_examples/` — fallback for legacy/standalone Cowork layouts.
+
+   Each subdirectory name is a template identifier. When `CLAUDE_PLUGIN_ROOT` is set, label bundled templates "(built-in)".
+2. **Template matching — three outcomes only:**
+   - **Clear match**: the user's request maps unambiguously to one template. Select it automatically and confirm the selection to the user (e.g., "I'll use the *Mutual NDA* template — let me ask you a few questions.").
+   - **Ambiguous match**: two or more templates are plausible. Present the options and ask the user to choose. Do not select on their behalf.
+   - **No match**: no template in the library plausibly addresses the request. **Stop immediately.** Tell the user: "I don't have a template for that document type in the current library. Please consult a lawyer, or ask your template author to add an appropriate template." Do not proceed to interview; do not attempt to assemble a document without a matched template.
+
+   Match fuzzily for "clear" and "ambiguous" cases — "tenancy" matches `tenancy_agreement/`, "meeting" matches `meeting_notes/`. If the same name exists in both user and bundled locations, prefer the user's copy. If the user's request implies a jurisdiction-specific document (e.g., "a Delaware LLC operating agreement"), note this in any no-match or ambiguous-match message: "Jurisdiction-specific documents may require a template designed for that jurisdiction — please consult a lawyer."
 3. If the template has `meta.display_name` in its manifest, use that when presenting to the user.
 4. Note the user's exact opening request — the message that triggered this skill. Store it as `session_request` for use in the interview log (Phase 3d).
 
@@ -73,6 +95,14 @@ If the manifest is missing, stale, or has `schema_version` < 2, run the **coquil
 Load the resulting manifest and proceed — it is the single source of truth for the interview.
 
 After the analyzer completes, append a `tool_use` entry to the interview log recording the invocation.
+
+### Analyzer Escalation Check
+
+Before proceeding to Phase 3, review any warnings returned by the analyzer:
+
+- **Zero variables** (`variable_count: 0`): **Hard stop.** Tell the user: "This template appears to have no fillable fields — it may be the wrong file, or the template may need to be rebuilt. Please verify and try again." Do not proceed to interview.
+- **Orphaned gate variable**: Tell the user: "This template has a configuration issue that may cause rendering to fail." Ask whether they want to continue or stop. Do not proceed silently.
+- **Other warnings** (config drift, empty loops, conditional variable shadowing): Log them in the `tool_use` entry and continue — they do not block the interview.
 
 ### Understanding the Manifest
 
@@ -175,6 +205,7 @@ For each unconditional group:
 5. If the user gives a partial answer, acknowledge what you received and ask for the missing fields.
 6. If a variable has a `default` and the user doesn't provide a value, use the default. Special default `"today"` resolves to the current date.
 7. Store answers in the variable dictionary.
+8. **Escalation check**: if the variable's manifest definition includes an `escalate_if` field (e.g., `escalate_if: {reason: "jurisdiction-specific"}`), surface the associated escalation message to the user immediately after collecting their answer. Do not proceed silently past an escalation flag — the user must acknowledge it before the interview continues.
 
 Log the **effective** exchange — the final question as asked and the final answer as given. Do not reconstruct every micro-turn; capture the substance.
 
@@ -227,6 +258,7 @@ Once confirmed, run the **coquill-renderer** skill with:
 - The format (docx, html, or markdown)
 - The complete variable dictionary (including boolean values as Python `True`/`False` and loop data as lists of dicts)
 - The output directory (`output/`)
+- A `draft_notice` set to `"DRAFT — REQUIRES LEGAL REVIEW"` — the renderer will prepend this as the first line of the document body so that no output can be mistaken for a final, approved document
 
 The renderer will:
 1. Render the document (docx, or html + pdf)
@@ -265,6 +297,7 @@ After the transcriber completes, append a `tool_use` entry to the interview log 
 
 1. Present the completed document(s) to the user with links to the job folder. Link to all produced formats (docx, html, pdf, md). If PDF conversion failed, suggest manual conversion (MS Word Export, LibreOffice, Pandoc). Mention: "A transcript of this session has been saved to `transcript.md` in the job folder."
 2. Offer: "Would you like to prepare another document?"
+3. **Privilege and version-control reminder:** Tell the user: "The job folder contains `interview_log.json` and `transcript.md` which may include privileged client information. Do not commit the `output/` folder to a shared repository or version-control system accessible to unauthorised parties."
 
 If the user prepares another document, Phase 3d creates a fresh interview log. Each `interview_log.json` and `transcript.md` is scoped to exactly one document.
 
@@ -282,18 +315,3 @@ If the user prepares another document, Phase 3d creates a fresh interview log. E
 ## Plugin Context Notes
 
 When running as a Claude Code plugin (i.e., `CLAUDE_PLUGIN_ROOT` is set), sub-skills are namespaced. If bare skill names (`coquill-analyzer`, `coquill-renderer`, `coquill-transcriber`) do not resolve, use the namespaced forms: `coquill:coquill-analyzer`, `coquill:coquill-renderer`, and `coquill:coquill-transcriber`.
-
----
-
-## QA Remediation (LegalQuants, 2026-05)
-
-LegalQuants reviewed this third-party MIT skill (upstream: Hou Fu Ang / houfu/coquill) against the Legal Skill Design Framework. The QA report (`/tmp/qa-results/coquill.md`) returned SOME CONCERN with three remediable gaps; the upstream technical pipeline (template discovery, analyzer/renderer/transcriber decomposition, unfilled-placeholder refusal, type validation, manifest caching, PDF soft-fail) is preserved unchanged. This remediation adds:
-
-1. **Work Shape declaration (Bounded Transactional)** — named explicitly at the top of the skill so the user/orchestrator does not mistake template fill for accretive judgment.
-2. **Out of Scope + failure paths** — explicit scope-out for what CoQuill does NOT do (drafting from scratch, clause selection, jurisdictional validity, substantive correctness), with explicit halt conditions when the template lookup misses or when the user wants a wholly novel document.
-3. **Escalation triggers** — named conditions under which the interview halts: unknown template, conflicting user answers, missing required variables, unfilled placeholders at render time, anomalous substantive values.
-4. **Draft Output Requirement** — every rendered document and the transcript carry a "DRAFT — review and revise before execution" header so a downstream reader cannot mistake a machine-assembled draft for a finalised instrument.
-
-Frontmatter additions: `author: Hou Fu Ang` (preserved from upstream LICENSE), `version: 0.1.0`, `last_reviewed: 2026-05`, `last_reviewed_by: LegalQuants (QA remediation)`. Upstream MIT LICENSE (Copyright (c) 2026 Ang Hou Fu) is preserved unchanged in the skill directory.
-
-Gaps deliberately NOT addressed in this remediation (out of scope for SKILL.md edits, tracked separately): shipping or hash-pinning the three referenced Python scripts (`scripts/analyze.py`, `scripts/render.py`, `scripts/transcribe.py`); privilege guidance on `interview_log.json` / `transcript.md` on-disk persistence; CHANGELOG and maintainer contact channel.
