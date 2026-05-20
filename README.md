@@ -31,7 +31,7 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [adversarial-qc](skills/adversarial-qc/) | Alexios vdSK | Agnostic | Adversarial quality control for AI deliverables — two-agent parallel verification with checklist, agreements/disagreements flagged for human review |
 | [collating-reviewer-feedback](skills/collating-reviewer-feedback/) | AnonLQ | Agnostic | Compile DOCX comments and tracked changes into a lawyer-controlled resolution checklist |
 | [uk-citation-verification](skills/uk-citation-verification/) | AnonLQ | UK | Verify UK citations against public authority sources and flag hallucinated or mismatched authorities |
-| [nist-ai-rmf](skills/nist-ai-rmf/) | Rafal Stanislaw Fryc | Agnostic | Apply NIST AI Risk Management Framework (AI 100-1 + GenAI Profile 600-1) — three modes: consult, governance plan, full assessment — citing GOVERN/MAP/MEASURE/MANAGE subcategories and 211 GAI Profile Action IDs verbatim |
+| [nist-ai-rmf](skills/nist-ai-rmf/) | Rafal Stanislaw Fryc | US | Apply NIST AI Risk Management Framework (AI 100-1 + GenAI Profile 600-1) — three modes: consult, governance plan, full assessment — citing GOVERN/MAP/MEASURE/MANAGE subcategories and 211 GAI Profile Action IDs verbatim |
 | [proposition-checking](skills/proposition-checking/) | AnonLQ | Agnostic | Check whether cited materials actually support legal and factual propositions |
 | [building-chronologies](skills/building-chronologies/) | AnonLQ | Agnostic | Build sourced chronologies from legal documents, correspondence, disclosure, and pleadings |
 | [uk-witness-statement-review](skills/uk-witness-statement-review/) | AnonLQ | England and Wales | Review witness statements for source support, CPR compliance, and evidential risk |
