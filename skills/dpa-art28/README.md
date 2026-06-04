@@ -63,3 +63,7 @@ Apache-2.0 — see [LICENSE](LICENSE). Authored by Oliver Schmidt-Prietz.
 
 *More EU regulatory skills (GDPR, EU AI Act, Data Act, NIS2, and more) →
 [github.com/oliverschmidtprietz](https://github.com/oliverschmidtprietz)*
+
+## Liability
+
+This skill is provided **"as is" under the Apache License 2.0** — without warranties of any kind, and subject to the limitation of liability in §§ 7–8 of that license. It is not legal advice and creates no attorney–client relationship. To the fullest extent permitted by law, the author (Oliver Schmidt-Prietz, Rechtsanwalt, Germany) accepts no liability for any use of, or reliance on, this skill or its output; users use it at their own responsibility and are solely responsible for validating results and for their own compliance decisions.
