@@ -254,3 +254,7 @@ This section is a feature, not a disclaimer reflex — it tells the user when to
 - **It does not give DORA advice.** Financial entities in scope of DORA are carved out of NIS2 Art. 21 / Art. 23; the skill redirects rather than assessing them under NIS2.
 - **Non-German national profiles are high-level.** Germany (BSIG-neu) is covered in depth; Italy, France, the Netherlands, Austria, and Spain are profile-level orientation only. Several transpositions are still in legislative process, so the skill prompts a web search for current status and recommends local counsel per jurisdiction.
 - **It does not track real-time legislative or enforcement status.** It is calibrated to the regulatory picture at authoring time and explicitly directs the user to verify current developments before reliance.
+
+## Liability
+
+This skill is provided **"as is" under the Apache License 2.0** — without warranties of any kind, and subject to the limitation of liability in §§ 7–8 of that license. It is not legal advice and creates no attorney–client relationship. To the fullest extent permitted by law, the author (Oliver Schmidt-Prietz, Rechtsanwalt, Germany) accepts no liability for any use of, or reliance on, this skill or its output; users use it at their own responsibility and are solely responsible for validating results and for their own compliance decisions.
