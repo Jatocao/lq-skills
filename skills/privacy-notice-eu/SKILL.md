@@ -426,3 +426,7 @@ This section is a feature, not a disclaimer reflex — it tells the user when to
 - **It does not certify compliance.** Passing the internal Art. 13/14 checklist means the notice covers the mandatory disclosures for the inputs given; it is not a guarantee of compliance for the controller's actual processing, which only the controller (and counsel) can confirm.
 - **Translations are drafting support, not certified legal translation.** Multi-language versions are authored in each language's legal register and flagged for native-speaker legal review; they are not sworn translations.
 - **It does not audit the live site.** Cookie tables and data flows reflect what the user reports; the skill recommends verifying them against the actual site (dev tools) and architecture (IT/engineering) before publication.
+
+## Liability
+
+This skill is provided **"as is" under the Apache License 2.0** — without warranties of any kind, and subject to the limitation of liability in §§ 7–8 of that license. It is not legal advice and creates no attorney–client relationship. To the fullest extent permitted by law, the author (Oliver Schmidt-Prietz, Rechtsanwalt, Germany) accepts no liability for any use of, or reliance on, this skill or its output; users use it at their own responsibility and are solely responsible for validating results and for their own compliance decisions.
