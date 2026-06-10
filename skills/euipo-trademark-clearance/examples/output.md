@@ -9,7 +9,7 @@
 
 ## Output
 
-```
+ ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   EUIPO TRADEMARK CLEARANCE REPORT
   Mark: AURORA
@@ -23,9 +23,8 @@ OVERALL RISK: 🟡 MEDIUM
 
 EXECUTIVE SUMMARY
 Search of the EUTM register identified 3 earlier marks containing or consisting of AURORA
-in class 32, none of which are identical but two of which present medium likelihood of
-confusion due to high sign similarity and identical goods. Filing may proceed subject to
-monitoring and preparation of coexistence arguments for the two medium-risk conflicts.
+in class 32, none of which are identical but two of which present a medium-strength
+conflict signal due to high sign similarity and identical or highly similar goods.
 
 CONFLICTS IDENTIFIED
 
@@ -53,10 +52,10 @@ DETAILED ANALYSIS — TOP CONFLICTS
 
 **Distinctiveness of earlier mark:** Inherent — AURORA is a common word (Latin for dawn) with no special distinctiveness in the beverage sector. No evidence of enhanced distinctiveness through use. Weak inherent distinctiveness narrows the scope of protection.
 
-**Likelihood of confusion:** 🟡 Medium
-Identical goods offset by medium sign similarity and weak distinctiveness of the earlier mark.
-Opposition risk exists but is not certain. The addition of BOREALIS is a meaningful differentiator
-that a well-presented defence could exploit. Monitor this mark closely.
+**Conflict signal:** 🟡 Medium
+Identical goods combined with medium sign similarity and weak inherent distinctiveness of
+the earlier mark. The addition of BOREALIS is a differentiator that weighs against the
+conflict; the identity of goods and shared dominant element AURORA weigh in favour of it.
 
 ---
 
@@ -76,34 +75,44 @@ that a well-presented defence could exploit. Monitor this mark closely.
 
 **Distinctiveness of earlier mark:** Inherent — AURORAE is a classical Latin form, slightly more distinctive than AURORA alone as it is less commonly encountered, but still weak in the beverage sector.
 
-**Likelihood of confusion:** 🟡 Medium
-High phonetic similarity combined with highly similar goods creates a real opposition risk.
-Coexistence arguments would need to focus on the visual and conceptual differences and
-the weakness of the earlier mark. Consider whether the client's goods can be further
-specified to reduce overlap.
+**Conflict signal:** 🟡 Medium
+High phonetic similarity combined with highly similar goods. Visual and conceptual
+differences and the weakness of the earlier mark weigh against the conflict; the
+phonetic closeness and goods overlap weigh in favour of it.
 
 APPLICABLE CASE LAW
 - SABEL v Puma (C-251/95) — global assessment; interdependence principle
 - Lloyd Schuhfabrik Meyer (C-342/97) — imperfect recollection; enhanced distinctiveness
 - Canon (C-39/97) — similarity of goods/services factors
 
-RECOMMENDATION
-Filing may proceed with monitoring. AURORA in class 32 faces two medium-risk conflicts:
-AURORA BOREALIS and AURORAE. Neither is certain to succeed in opposition given the weak
-distinctiveness of both earlier marks, but the goods overlap is direct and the phonetic
-similarity with AURORAE is high.
+FACTORS FOR COUNSEL TO WEIGH
+- AURORA BOREALIS: identical goods + medium sign similarity + weak inherent
+  distinctiveness of the earlier mark, offset by the BOREALIS addition as a
+  visual/conceptual differentiator.
+- AURORAE: highly similar goods + medium-high sign similarity (high phonetic
+  similarity in particular) + weak inherent distinctiveness of the earlier mark,
+  offset by minor visual differences and the obscurity of the Latin plural form.
 
-Suggested mitigations:
-1. Narrow the goods/services specification to minimise overlap (e.g., exclude "non-alcoholic
-   beverages" generally in favour of specific product types)
-2. Monitor both marks for watch service alerts after filing
-3. Prepare coexistence arguments focusing on the weakness of the earlier marks and the
-   addition of BOREALIS / the Latin plural form as differentiators
-4. Investigate whether AURORA BOREALIS is in genuine use — if not, a non-use cancellation
-   action could clear the path before filing
+Options that may be available: narrowing the goods/services specification (e.g.,
+away from "non-alcoholic beverages" generally and toward specific product types);
+monitoring both marks after filing; investigating whether AURORA BOREALIS is in
+genuine use; coexistence discussion with either or both right holders.
+
+OPEN UNKNOWNS / WHAT THE ATTORNEY MUST DECIDE
+- Whether AURORA BOREALIS and AURORAE are in genuine use (use status was not
+  established by this search).
+- The client's commercial priorities and tolerance for opposition risk.
+- Whether national searches (OEPM, UKIPO, INPI, DPMA, etc.) have been run.
+- Whether the client has any pre-existing relationship with either right holder
+  that could support a coexistence approach.
+
+The filing decision itself — proceed, amend the specification, or do not file —
+is for the reviewing attorney, taking these factors and unknowns into account.
 
 LIMITATIONS
-This report searches the EUTM register only. National registers (OEPM, UKIPO, INPI, DPMA, etc.)
-are not covered. For comprehensive clearance, national searches are required.
+This report searches the EUTM register only, via the connector configured by the
+user. National registers (OEPM, UKIPO, INPI, DPMA, etc.) are not covered. For
+comprehensive clearance, national searches are required. This report does not
+constitute a filing recommendation.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+``` 
