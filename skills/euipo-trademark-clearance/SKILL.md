@@ -1,6 +1,6 @@
 ---
 name: euipo-trademark-clearance
-description: Use when a user needs to check whether a proposed trademark is available for registration before the European Union Intellectual Property Office (EUIPO). Searches the official EUIPO trademark database in real time, identifies conflicting earlier marks, and produces a likelihood-of-confusion analysis under Art. 8.1.b EUTMR applying CJEU case law (SABEL, Lloyd Schuhfabrik, Canon). Outputs a risk report with a traffic-light rating (High / Medium / Low). Requires the EUIPO MCP connector.
+description: Use when a user needs to check whether a proposed trademark is available for registration before the European Union Intellectual Property Office (EUIPO). Queries the EUTM register via a configured EUIPO connector, identifies conflicting earlier marks, and produces a likelihood-of-confusion analysis under Art. 8.1.b EUTMR applying CJEU case law (SABEL, Lloyd Schuhfabrik, Canon). Outputs a risk report with a traffic-light rating (High / Medium / Low) that surfaces factors for attorney review. Requires a configured EUIPO connector — coverage and freshness depend on that connector.
 author: Jatocao
 jurisdiction: EU
 tags: [trademark, euipo, clearance, likelihood-of-confusion, ip, eu-trademark, nice-classification]
@@ -39,9 +39,9 @@ lq_ai:
 
 # EUIPO Trademark Clearance
 
-This skill performs a pre-filing clearance search against the official EUIPO trademark register and produces a likelihood-of-confusion (LoC) analysis under Art. 8.1.b of the EU Trade Mark Regulation (EUTMR 2017/1001). It applies the multi-factor test established by CJEU case law to assess the risk that an earlier mark would form the basis of a successful opposition.
+This skill performs a pre-filing clearance search against the EUTM register, via a configured EUIPO connector, and produces a likelihood-of-confusion (LoC) analysis under Art. 8.1.b of the EU Trade Mark Regulation (EUTMR 2017/1001). It applies the multi-factor test established by CJEU case law to identify the factors a registration decision would need to weigh.
 
-All outputs are first-line analysis for attorney review. They do not constitute a registration opinion or legal advice.
+Coverage and freshness of the search results depend entirely on the connector configured by the user — this skill does not itself guarantee live or complete access to the EUIPO register. All outputs are first-line analysis for attorney review. They do not constitute a registration opinion, a filing recommendation, or legal advice.
 
 > **Scope and Legal Use**
 > This skill processes information that may relate to client matters and pending commercial decisions. Treat all outputs as privileged work product unless the supervising attorney has decided otherwise. The report is a draft for qualified-counsel review — it does not constitute a legal opinion, a guarantee of registrability, or advice to file or not file. Do not share with a client or counterparty until a named responsible attorney has reviewed and approved it.
@@ -76,9 +76,9 @@ If `nice_classes` is missing, ask: *"Which Nice Classification classes cover the
 
 ## Workflow
 
-### Step 1 — Search the EUIPO register
+### Step 1 — Search the EUTM register
 
-Using the EUIPO MCP connector (`search_trademarks`), run the following searches against the EUIPO database:
+Using the configured EUIPO connector (`search_trademarks`), run the following searches against the EUTM register:
 
 1. **Identical search** — exact string match for `mark_name` in all requested classes
 2. **Phonetic/visual similarity search** — partial string, prefix, and fuzzy matches to catch near-identical marks
@@ -136,10 +136,10 @@ Apply the global assessment of likelihood of confusion, taking into account all 
 - The relevant public's level of attention: higher for specialist/professional goods, lower for everyday consumer goods (Lloyd Schuhfabrik imperfect recollection test)
 - In EU trademark law, the average consumer is deemed reasonably well-informed, attentive, and circumspect
 
-For each conflict candidate, assign an overall LoC rating:
-- 🔴 **High** — likelihood of confusion probable; opposition risk is real; filing not recommended without clearance strategy
-- 🟡 **Medium** — likelihood of confusion possible; filing may proceed but monitor and prepare coexistence arguments
-- 🟢 **Low** — likelihood of confusion unlikely; filing can proceed with standard due diligence
+For each conflict candidate, assign an overall LoC rating describing the strength of the conflict signal — not a filing instruction:
+- 🔴 **High** — the factors above point toward a likelihood of confusion; this is a conflict the attorney should weigh carefully
+- 🟡 **Medium** — the factors above are mixed; this conflict carries some weight but is not clear-cut
+- 🟢 **Low** — the factors above point away from a likelihood of confusion; this conflict carries limited weight
 
 ### Step 6 — Draft the report
 
@@ -150,7 +150,6 @@ Produce the report in the format specified in the **Output** section below. Use 
 ## Output
 
 ### Internal mode (default)
-
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   EUIPO TRADEMARK CLEARANCE REPORT
@@ -164,8 +163,7 @@ Produce the report in the format specified in the **Output** section below. Use 
 OVERALL RISK: 🔴 HIGH / 🟡 MEDIUM / 🟢 LOW
 
 EXECUTIVE SUMMARY
-[2-3 sentences: number of conflicts found, overall risk level, key risk driver,
-and recommendation]
+[2-3 sentences: number of conflicts found, overall risk level, key risk driver]
 
 CONFLICTS IDENTIFIED
 [Table: Mark | Owner | Classes | Status | Sign similarity | G/S similarity | LoC rating]
@@ -196,13 +194,29 @@ APPLICABLE CASE LAW
 - Lloyd Schuhfabrik Meyer (C-342/97) — imperfect recollection; enhanced distinctiveness
 - Canon (C-39/97) — similarity of goods/services factors
 
-RECOMMENDATION
-[Clear recommendation: file / file with monitoring / do not file / seek coexistence]
-[If filing risk exists: suggested mitigations — class limitation, design-around, letter of consent]
+FACTORS FOR COUNSEL TO WEIGH
+[For each High/Medium conflict, summarise in one line the factor profile that
+counsel should weigh — e.g. "Identical goods + medium sign similarity + weak
+distinctiveness of earlier mark" — without translating it into a file/don't-file
+instruction.]
+[List possible mitigations as options to evaluate, not as a chosen course of
+action — e.g. "Options that may be available: narrowing the goods/services
+specification; monitoring the conflicting mark; investigating use of the
+earlier mark; coexistence discussion."]
+
+OPEN UNKNOWNS / WHAT THE ATTORNEY MUST DECIDE
+[List anything this search could not establish and that bears on the filing
+decision — e.g. actual use/non-use of earlier marks, client's commercial
+priorities and tolerance for opposition risk, whether national searches have
+been run, whether the client has a pre-existing relationship with the earlier
+right holder. State explicitly that the filing decision itself — proceed,
+amend, or do not file — is for the reviewing attorney.]
 
 LIMITATIONS
-This report searches the EUTM register only. National registers (OEPM, UKIPO, INPI, DPMA, etc.)
-are not covered. For comprehensive clearance, national searches are required.
+This report searches the EUTM register only, via the connector configured by the
+user. National registers (OEPM, UKIPO, INPI, DPMA, etc.) are not covered. For
+comprehensive clearance, national searches are required. This report does not
+constitute a filing recommendation.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -219,7 +233,7 @@ Same structure but:
 
 ## Edge cases and refusals
 
-- **No EUIPO connector available:** If the EUIPO MCP connector is not configured, explain that a live register search is not possible and offer to perform a conceptual analysis based on user-provided data only. Clearly mark the output as "no live search performed."
+- **No EUIPO connector available:** If no EUIPO connector is configured, explain that a register search is not possible and offer to perform a conceptual analysis based on user-provided data only. Clearly mark the output as "no register search performed."
 - **Mark is a device/figurative mark with no verbal element:** Explain that this skill analyses the verbal element. For pure figurative marks, a visual comparison requires the image — flag this to the user and proceed if an image description is provided.
 - **Classes not specified:** Do not run the search. Ask for the classes first. A clearance search without defined classes has no analytical value.
 - **Very broad goods/services (e.g., "all goods in class 9"):** Narrow the analysis to the core goods/services described. Flag that overbroad specifications increase conflict risk.
@@ -235,5 +249,5 @@ This skill is intended for use by qualified IP professionals (trademark attorney
 - Outputs should be treated as confidential and matter-specific
 - The reviewer-of-record line must be completed by a named qualified attorney before any output is shared with a client or counterparty
 - This skill does not constitute legal advice and does not create an attorney-client relationship
-- Filing decisions must be made by a qualified attorney taking into account all relevant factors
-- EUIPO database coverage: marks with status REGISTERED, APPLICATION_PUBLISHED, UNDER_EXAMINATION, OPPOSITION_PENDING, REGISTRATION_PENDING. Expired, withdrawn, and cancelled marks are excluded from the default search but may be relevant for cancellation proceedings — flag this if the user raises prior use claims.
+- This skill does not make or recommend a filing decision. It surfaces the factors and open unknowns the decision depends on. Filing decisions must be made by a qualified attorney taking into account all relevant factors, including ones outside this skill's scope
+- Register coverage depends on the connector configured by the user. Where the connector reports a status field, marks with status REGISTERED, APPLICATION_PUBLISHED, UNDER_EXAMINATION, OPPOSITION_PENDING, REGISTRATION_PENDING should be included and EXPIRED, WITHDRAWN, CANCELLED excluded by default — but expired/withdrawn/cancelled marks may be relevant for cancellation proceedings; flag this if the user raises prior use claims
