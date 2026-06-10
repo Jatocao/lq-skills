@@ -14,21 +14,23 @@ The analysis applies the multi-factor test from CJEU case law:
 
 ## Requirements
 
-**A configured EUIPO connector** — this skill requires an MCP connector exposing a `search_trademarks` tool against the EUTM register. The example below shows the shape of such a connector configuration; users must supply and configure their own connector and credentials:
+**A configured EUIPO connector** — this skill requires an MCP connector exposing a `search_trademarks` tool against the EUTM register. A reference implementation, pinned to a tagged release, is available at [Jatocao/euipo-mcp](https://github.com/Jatocao/euipo-mcp) (v0.1.0):
 
 ```json
 {
   "mcpServers": {
     "EUIPO": {
-      "type": "stdio",
-      "command": "python",
-      "args": ["-m", "euipo_mcp_server"]
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/Jatocao/euipo-mcp.git@v0.1.0", "euipo-mcp"],
+      "env": {
+        "EUIPO_API_KEY": "your_api_key_here"
+      }
     }
   }
 }
 ```
 
-API credentials: register at [EUIPO Developer Portal](https://euipo.europa.eu/ohimportal/en/open-data).
+API credentials: register at the [EUIPO API Portal](https://dev.euipo.europa.eu).
 
 ## Usage
 
