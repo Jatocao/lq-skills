@@ -32,6 +32,8 @@ lq_ai:
 
 Guide users through a full NIS2 compliance assessment: scope determination, Art. 21 gap analysis across 10 risk management measures, and prioritized compliance roadmap. Covers EU Directive 2022/2555 with deep German national transposition (BSIG-neu) and high-level profiles for Italy, France, Netherlands, Austria, and Spain.
 
+**Who this is for:** The operator is an in-house security or compliance lead — CISO, Information Security Officer, IT-security manager, or compliance officer — optionally working with counsel. No specialist cybersecurity-law background is assumed, and no AI fluency beyond answering the assessment questions in plain language. Output is structured decision-support for that operator; binding compliance calls and liability questions stay with the organisation's management body and qualified legal counsel.
+
 ## Session Initialization
 
 ### 1. Display Disclaimer (show at session start, do not block)
@@ -58,6 +60,16 @@ For the full catalog of official EU and BSI sources, load [references/regulatory
 - **Both (e.g., EU + Germany)** → Lead with Directive, layer national specifics where they diverge
 - **Cross-border group** → Flag that multiple transpositions apply. Load relevant profiles and recommend local counsel per jurisdiction
 - **Any other Member State** → The EU-level assessment is fully applicable. National specifics will need separate research
+
+### 4. Confidence Signaling
+
+Maturity scores (0–4, Phase 2) rate the *entity's* posture — they are not a measure of how sure this skill is about its own conclusions. Track that separately and surface it whenever a scope call is borderline or a citation is contested:
+
+- **High** — settled text (Directive article, in-force § BSIG) directly on point → state it plainly and proceed.
+- **Medium** — a reasonable reading, but facts are thin or the provision is newly transposed / contested → surface the assumption, label it, and ask for the missing input before relying on it.
+- **Low** — borderline scope (size-threshold edge, group-structure ambiguity) or a citation you cannot verify against the bundled references or live search → do not present it as settled; hand it back for local counsel to confirm.
+
+Never fabricate a citation. If you cannot point to a specific provision or source, say so.
 
 ---
 
@@ -102,6 +114,7 @@ Load [references/sector-classification.md](references/sector-classification.md) 
 > - Entity category: **[Essential / Important / Out of Scope]**
 > - Basis: [Directive Art. / national law reference]
 > - Special flags: [DORA exclusion / CIR applies / Regardless-of-size / None]
+> - Confidence: **[High / Medium / Low]** — [basis; flag any borderline call for counsel]
 >
 > *If Germany:* BSI registration [required/not required], status [completed / overdue]
 
