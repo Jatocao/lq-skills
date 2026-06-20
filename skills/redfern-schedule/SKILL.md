@@ -7,6 +7,16 @@ tags: [arbitration, document-production, redfern, iba-rules, procedure]
 version: 1.0.0
 last_reviewed: 2026-06
 last_reviewed_by: Alexios vdSK, Member, LegalQuants
+last_verified: 2026-06-20
+freshness_window: 12 months
+freshness_category: procedural
+verified_against:
+  - https://www.ibanet.org/MediaHandler?id=def0807b-9fec-43ef-b624-f2cb2af7cf7b
+  - https://praguerules.com/upload/medialibrary/9dc/9dc31ba7799e26473d92961d926948c9.pdf
+  - https://iccwbo.org/dispute-resolution/dispute-resolution-services/arbitration/rules-procedure/2026-arbitration-rules/
+  - https://www.lcia.org/Dispute_Resolution_Services/lcia-arbitration-rules-2020.aspx
+  - https://icsid.worldbank.org/rules-regulations/convention/arbitration-rules/chapter-v-evidence
+  - https://www.ciarb.org/media/bpndtcgu/guideline-on-the-use-of-ai-in-arbitration_updated-sept-2025.pdf
 ---
 
 > **YOU ARE ABOUT TO DO HIGHLY PRIVILEGED WORK. PLEASE CHECK THE RULES OF YOUR JURISDICTION, AS YOU MAY NEED TO SWITCH TO A LOCAL MODEL. BEFORE YOU PROCEED, CONFIRM THAT YOU ARE FINE WITH PROCEEDING.**
@@ -16,6 +26,12 @@ last_reviewed_by: Alexios vdSK, Member, LegalQuants
 # Redfern Schedule
 
 Build and maintain the Redfern Schedule that organises requests to produce documents in international arbitration. The skill serves three roles from one artefact: the requesting party (who drafts the requests and the relevance-and-materiality case), the producing party (who states objections), and the tribunal (who rules). It applies the IBA Rules on the Taking of Evidence (2020) admissibility form and grounds for objection, holds version discipline across rounds, and tells the user where their own requests are weak. It enforces form. The legal calls stay with counsel.
+
+## Audience and design
+
+- **Audience.** Arbitration counsel and the lawyers supervising them, acting in one of three roles (requesting party, producing party, tribunal). It assumes legal training and hands every substantive judgment back to the lawyer.
+- **Work shape.** Bounded and transactional. The scope is constrained, the tests are explicit, and the skill surfaces deviations and frames the decision rather than choosing for the user. Speed matters, but never at the cost of an escalation trigger.
+- **How it handles confidence.** A request that clearly passes or clearly fails the Article 3.3 gates is recorded as such with the reason. A borderline request is not silently resolved. It is named in the internal flags memo with the gate it strains, and the user decides whether to fix, narrow, or drop it. The skill surfaces uncertainty, it does not perform certainty.
 
 ## When this skill applies
 

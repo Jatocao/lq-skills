@@ -84,6 +84,8 @@ Source page: https://icsid.worldbank.org/procedures/arbitration/convention/produ
 
 ## How to re-run this check
 
+This is the author's offline verification method. It is not run when the skill executes and it is not an instruction to Claude. It records how the citations above were verified so any reader can reproduce the check independently.
+
 Deterministic, no model in the verification step:
 1. Download the official artifact by its stable URL with `curl`.
 2. Extract text with `pdftotext -layout` (poppler).

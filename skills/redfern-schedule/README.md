@@ -39,3 +39,7 @@ Regimes supported: IBA 2020 (default), Prague 2018, ICC, LCIA, ICSID. See `refer
 ## Tested
 
 Run end to end in a chat harness on a fictional investor-State dispute across all three roles: the privilege gate fires first, weak requests (a fishing-expedition sweep, a document the requesting party already holds, a non-party document routed to Article 3.9) are correctly flagged, and the Article 9.2(f) prompt fires only on genuinely governmental content, not on a state-owned party's ordinary commercial documents.
+
+## Quality assurance
+
+Run past Anthropic's `claude-for-legal` **skills-qa** framework (the thirteen-parameter Legal Skill Design Framework, the prompt-injection heuristic scan, and the three legal failure modes). Trust surface is clean (prompt-only: no hooks, no MCP, no network, no out-of-directory writes), and all three legal failure modes (legal advice versus support, privilege, accountability gap) are addressed. The QA findings were applied: the four freshness fields are declared in the frontmatter, and the audience, work shape, and confidence handling are stated above.
