@@ -36,10 +36,29 @@ Regimes supported: IBA 2020 (default), Prague 2018, ICC, LCIA, ICSID. See `refer
 - It does not invent facts, issues, or citations beyond your inputs and the reference files.
 - It is not a substitute for review by qualified arbitration counsel.
 
-## Tested
-
-Run end to end in a chat harness on a fictional investor-State dispute across all three roles: the privilege gate fires first, weak requests (a fishing-expedition sweep, a document the requesting party already holds, a non-party document routed to Article 3.9) are correctly flagged, and the Article 9.2(f) prompt fires only on genuinely governmental content, not on a state-owned party's ordinary commercial documents.
-
 ## Quality assurance
 
-Run past Anthropic's `claude-for-legal` **skills-qa** framework (the thirteen-parameter Legal Skill Design Framework, the prompt-injection heuristic scan, and the three legal failure modes). Trust surface is clean (prompt-only: no hooks, no MCP, no network, no out-of-directory writes), and all three legal failure modes (legal advice versus support, privilege, accountability gap) are addressed. The QA findings were applied: the four freshness fields are declared in the frontmatter, and the audience, work shape, and confidence handling are stated above.
+This skill went through four independent gates plus a live functional test. Each is summarised below.
+
+### 1. Citation provenance (byte-verified)
+
+Every legal citation is checked against its official source and logged in `reference/CITATIONS.md` with the deterministic method: download the official artifact, extract its text, and match each cited number and phrase against the literal text. Sources: IBA Rules on the Taking of Evidence 2020, Prague Rules 2018, ICC Rules 2021 and 2026, LCIA Rules 2020, ICSID Arbitration Rules 2022, CIArb Guideline on the Use of AI in Arbitration 2025.
+
+### 2. Adversarial citation review
+
+Two independent passes re-verified every citation against the live official sources (not the skill's own ledger), with skeptic refutation of every finding. Defects found were fixed (for example, the ICSID Rule 37 heading and operative verb were corrected against the binding text). The four freshness fields are declared in the frontmatter so a reader can see when the bundled law was last verified.
+
+### 3. claude-for-legal skills-qa
+
+Run past Anthropic's `claude-for-legal` **skills-qa** framework: the thirteen-parameter Legal Skill Design Framework, the prompt-injection heuristic scan, and the three legal failure modes. Result: trust surface clean (prompt-only, no hooks, no MCP, no network, no out-of-directory writes), all three legal failure modes addressed (legal advice versus support, privilege, accountability gap), and the freshness and design findings applied. Verdict: ready.
+
+### 4. Anthropic skill-creator QC (design plus empirical evals)
+
+Run past Anthropic's `skill-creator` guide. Two parts:
+
+- **Design review** against the anatomy, progressive-disclosure, lack-of-surprise, and writing-pattern principles. The skill is prompt-only with a concise instruction file and reference material loaded on demand. The description was made more explicit so the skill triggers on document-production requests even when the user does not say the words "Redfern Schedule".
+- **Empirical evals.** Four bundled test cases (`evals/evals.json`) covering the requesting, producing, and tribunal roles plus an out-of-scope litigation request, each run with the skill and against a clean no-skill baseline, graded on objective assertions. With the skill, every assertion passed across all four cases. Against the clean baseline the skill added clear value on the high-stakes behaviours: it fires the privilege gate first (the baseline skipped it), it leaves the tribunal's decision blank and proposes nothing (the baseline went ahead and ruled), it produces a discrete privileged flags memo of the user's own weak points, it pairs objections with Article 9.5 protective measures rather than flat refusals, and it declines to invent a relevance case the user did not plead.
+
+### 5. Live functional test
+
+Run end to end on a real chat platform across all three roles on a fictional investor-State dispute: the privilege gate fires first, weak requests are correctly flagged (a fishing-expedition sweep fails Article 3.3, a document the requesting party already holds is flagged under Gate C, a non-party document is routed to Article 3.9), and the Article 9.2(f) prompt fires only on genuinely governmental content, not on a state-owned party's ordinary commercial documents.
