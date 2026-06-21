@@ -21,7 +21,6 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [text-provenance](skills/text-provenance/) | Yu Chou Teo | SG | Identify text sources, attribute clauses, detect plagiarism |
 | [office-word-diff](skills/office-word-diff/) | Yu Chou Teo | SG | Word-level tracked changes via Office.js |
 | [superdoc-redlines](skills/superdoc-redlines/) | Yu Chou Teo | SG | Multi-agent DOCX redlining with conflict resolution |
-| [nzbn-word-addin](skills/nzbn-word-addin/) | Joshua Wong | NZ | Validate NZ companies via NZBN register from Word |
 | [bart-statutory-reference-checker](skills/bart-statutory-reference-checker/) | Kevan Wee | SG | Check statutory citations against Singapore statutes |
 | [nda-review](skills/nda-review/) | Jamie Tso | Agnostic | One-way commercial NDA review with clause-by-clause issue logs |
 | [vibe-legal-batch-redliner](skills/vibe-legal-batch-redliner/) | Artur Serov | UK | Batch contract redlining with playbook-driven AI |
@@ -55,6 +54,11 @@ Most legal AI tools are black boxes. LQ skills are transparent, version-controll
 | [legal-translation](skills/legal-translation/) | Arjun Singh Chouhan | Agnostic | Legal document translation that understands law, not just language — covers all language pairs, transliteration, bilingual documents, and legal terminology lookups |
 | [california-property-tax](skills/california-property-tax/) | Legal Quants community | US-CA | California property tax research workflow using BOE Property Tax Rules (462.* change of ownership) and PTLG annotations (220.*); rule/annotation synthesis applied to user facts |
 | [case-file-analyzer](skills/case-file-analyzer/) | Dennis G. Jansen | Agnostic | Stateless R.A.L.P.H.-pattern agent for adversarial case-file analysis — extracts facts/claims/legal views into XML metadata across large directories, then synthesizes contradictions and timeline. Proof of concept |
+| [ai-act-quick](skills/ai-act-quick/) | Oliver Schmidt-Prietz | EU | EU AI Act quick assessment — fast 15–25 minute triage for preliminary classification and compliance before committing to full analysis |
+| [dpa-art28](skills/dpa-art28/) | Oliver Schmidt-Prietz | EU | Review, draft, and redline DPAs under GDPR Art. 28 (and Art. 26 joint-controller arrangements) — bilingual DE/EN, controller- and processor-side, quick or negotiation-grade |
+| [nis2-navigator](skills/nis2-navigator/) | Oliver Schmidt-Prietz | EU | NIS2 scope classification, Art. 21 gap analysis (0–4 maturity scoring), and compliance roadmap under Directive 2022/2555 — deep German BSIG coverage plus IT/FR/NL/AT/ES profiles |
+| [privacy-notice-eu](skills/privacy-notice-eu/) | Oliver Schmidt-Prietz | EU | Draft GDPR/DSGVO-compliant privacy notices as .docx for any EU/EEA jurisdiction — five notice types, Art. 13/14 disclosures, AI Act transparency, cookie policy |
+| [redfern-schedule](skills/redfern-schedule/) | Alexios vdSK | MULTI | Build and maintain Redfern Schedules for document production in international arbitration — IBA Rules (2020) Art. 3.3 admissibility and Art. 9.2 objection checks |
 
 See [ACCESS-MODES.md](ACCESS-MODES.md) for source-handling conventions, [PR-READINESS.md](PR-READINESS.md) for the AnonLQ-attributed contribution checklist, and [skills/CONTRIBUTING.md](skills/CONTRIBUTING.md) for the higher-bar process applied to skills carrying legal substance.
 
