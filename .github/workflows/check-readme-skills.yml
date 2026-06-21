@@ -1,18 +1,33 @@
-name: Check README skill list
+name: Skills quality gate
 
 on:
   pull_request:
     paths:
       - 'skills/**'
       - 'README.md'
-      - 'scripts/check-readme-skills.sh'
+      - 'scripts/**'
   push:
     branches: [main]
 
 jobs:
-  check:
+  readme-list:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Verify README table tracks skills/ directories
         run: bash scripts/check-readme-skills.sh
+
+  skill-structure:
+    # Only on PRs — the check is diff-scoped to changed skills.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Enforce hard-floor structure on changed skills
+        env:
+          BASE_REF: origin/${{ github.base_ref }}
+        run: |
+          git fetch --quiet origin "$GITHUB_BASE_REF"
+          bash scripts/check-skill-structure.sh
