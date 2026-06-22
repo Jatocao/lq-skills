@@ -14,23 +14,34 @@ The analysis applies the multi-factor test from CJEU case law:
 
 ## Requirements
 
-**A configured EUIPO connector** — this skill requires an MCP connector exposing a `search_trademarks` tool against the EUTM register. A reference implementation, pinned to a tagged release, is available at [Jatocao/euipo-mcp](https://github.com/Jatocao/euipo-mcp) (v0.1.0):
+**A configured EUIPO connector** — this skill requires an MCP connector exposing a `search_trademarks` tool against the EUTM register. The reference connector is [enxebre/euipo-mcp-server](https://github.com/enxebre/euipo-mcp-server) (MIT), built by [@enxebre](https://github.com/enxebre); this skill was developed against it.
+
+The EUIPO API uses OAuth2 client credentials, so the connector takes a **Client ID and Client Secret** (not a single API key). Register for free at the [EUIPO developer portal](https://dev.euipo.europa.eu/), create an App to obtain your credentials, and subscribe to the **Trademark Search** API plan (sandbox approval ~1 day).
+
+Clone and pin to a specific commit for reproducibility, then point your MCP client at it:
 
 ```json
 {
   "mcpServers": {
-    "EUIPO": {
-      "command": "uvx",
-      "args": ["--from", "git+https://github.com/Jatocao/euipo-mcp.git@v0.1.0", "euipo-mcp"],
+    "euipo": {
+      "command": "uv",
+      "args": ["--directory", "/path/to/euipo-mcp-server", "run", "euipo-mcp-server"],
       "env": {
-        "EUIPO_API_KEY": "your_api_key_here"
+        "EUIPO_CLIENT_ID": "your-client-id",
+        "EUIPO_CLIENT_SECRET": "your-client-secret",
+        "EUIPO_USE_SANDBOX": "true"
       }
     }
   }
 }
 ```
 
-API credentials: register at the [EUIPO API Portal](https://dev.euipo.europa.eu).
+```bash
+git clone https://github.com/enxebre/euipo-mcp-server.git
+cd euipo-mcp-server && git checkout d07eabdccf2160869d42b12857fe9d67d379e208
+```
+
+Coverage and freshness of the search results depend entirely on this connector and the EUIPO APIs it calls; the skill itself does not guarantee live or complete register access.
 
 ## Usage
 
@@ -48,9 +59,11 @@ The skill will ask for Nice classes if not provided. It produces either an **int
 
 EU — EUTM register only. Does not cover national registers (OEPM Spain, UKIPO, INPI France, etc.). For comprehensive clearance, complement with national searches.
 
-## Author
+## Author & acknowledgements
 
-Contributed by a practising EU trademark attorney and Agente de la Propiedad Industrial.
+Skill contributed by a practising EU trademark attorney and Agente de la Propiedad Industrial.
+
+The EUIPO MCP connector this skill runs against was built by [@enxebre](https://github.com/enxebre) ([euipo-mcp-server](https://github.com/enxebre/euipo-mcp-server), MIT).
 
 ## License
 
