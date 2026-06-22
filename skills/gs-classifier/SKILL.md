@@ -45,6 +45,17 @@ Coverage and freshness of the term data depend entirely on the connector configu
 
 ---
 
+## How this skill behaves
+
+**Work shape — bounded transactional.** Classification is a constrained-scope task with explicit gates: every term is checked against the EUIPO harmonised database (HDB), and anything that cannot be confirmed is flagged rather than guessed. The skill works quickly but never skips those gates, and it escalates anything outside the pattern (vague inputs, non-EU targets, the final filing decision) to counsel.
+
+**Confidence bands.** The skill operationalises three confidence levels and behaves accordingly:
+- **High** — the term is confirmed in the HDB: include it as-is.
+- **Medium** — a close but unconfirmed match exists: surface the suggested HDB alternative, mark the original `[?]`, and ask before relying on it.
+- **Low** — no acceptable HDB match: do not force one; flag `[?]` and hand the term to counsel.
+
+---
+
 ## When this skill applies
 
 Apply this skill when:

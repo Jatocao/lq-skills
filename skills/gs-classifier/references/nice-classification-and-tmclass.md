@@ -1,3 +1,12 @@
+---
+last_verified: 2026-06
+freshness_window: 12 months
+freshness_category: stable
+verified_against: WIPO Nice Classification (NCL) framework and EUIPO TMclass / harmonised database (HDB) concept
+---
+
+> **Note on freshness.** This reference describes the *structure* of the Nice Classification and the harmonised-database concept — stable background doctrine, not class-by-class term content. The live, version-specific term data is queried through the connector at run time, never bundled here; always rely on the connector's current data for actual wording.
+
 # Nice Classification and the EUIPO harmonised database
 
 ## The Nice Classification
