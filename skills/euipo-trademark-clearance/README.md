@@ -41,6 +41,8 @@ git clone https://github.com/enxebre/euipo-mcp-server.git
 cd euipo-mcp-server && git checkout d07eabdccf2160869d42b12857fe9d67d379e208
 ```
 
+> **Important — match your credentials to the environment.** The EUIPO portal issues separate credentials for sandbox and production, and the token endpoint rejects a mismatch with a `401 Unauthorized`. Set `EUIPO_USE_SANDBOX="true"` only with sandbox credentials; set it to `"false"` to use your production App credentials. If you get a 401 on the token request, this toggle is the first thing to check. (Verified working end-to-end against the production Trademark Search API.)
+
 Coverage and freshness of the search results depend entirely on this connector and the EUIPO APIs it calls; the skill itself does not guarantee live or complete register access.
 
 ## Usage
