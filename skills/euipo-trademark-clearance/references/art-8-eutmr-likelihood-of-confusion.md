@@ -1,3 +1,10 @@
+---
+last_verified: 2026-06
+freshness_window: 24 months
+freshness_category: stable
+verified_against: Regulation (EU) 2017/1001 (EUTMR) Art. 8 and settled CJEU case law
+---
+
 # Art. 8.1.b EUTMR — Likelihood of Confusion Framework
 
 ## Statutory basis

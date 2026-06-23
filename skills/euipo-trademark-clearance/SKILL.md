@@ -48,6 +48,14 @@ Coverage and freshness of the search results depend entirely on the connector co
 
 ---
 
+## CJEU case-law corpus
+
+This skill bundles a curated corpus of landmark Court of Justice (CJEU) judgments on likelihood of confusion under `references/case-law/`, with a principle→case map in `references/case-law/INDEX.md`.
+
+When the workflow reaches a point governed by one of these principles — global assessment, similarity of goods, distinctiveness, composite/dominant elements, family of marks, conceptual counteraction, colour/use — **consult the matching case file**, apply its principle to the facts, and cite the case with its pinpoint paragraph. Do not cite a CJEU case the corpus does not contain without flagging that it falls outside this set and needs independent verification, and never assert a holding the corpus does not support. The summaries are practitioner orientation, not a substitute for the judgments.
+
+---
+
 ## When this skill applies
 
 Apply this skill when:
