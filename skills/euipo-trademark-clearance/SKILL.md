@@ -48,11 +48,14 @@ Coverage and freshness of the search results depend entirely on the connector co
 
 ---
 
-## CJEU case-law corpus
+## Reference corpus (case law + EUIPO practice)
 
-This skill bundles a curated corpus of landmark Court of Justice (CJEU) judgments on likelihood of confusion under `references/case-law/`, with a principle→case map in `references/case-law/INDEX.md`.
+This skill bundles a curated reference corpus in two layers:
 
-When the workflow reaches a point governed by one of these principles — global assessment, similarity of goods, distinctiveness, composite/dominant elements, family of marks, conceptual counteraction, colour/use — **consult the matching case file**, apply its principle to the facts, and cite the case with its pinpoint paragraph. Do not cite a CJEU case the corpus does not contain without flagging that it falls outside this set and needs independent verification, and never assert a holding the corpus does not support. The summaries are practitioner orientation, not a substitute for the judgments.
+- **`references/case-law/`** — landmark Court of Justice (CJEU) judgments on likelihood of confusion, one file per case, with a principle→case map in `references/case-law/INDEX.md`. These give the *principles*.
+- **`references/euipo-guidelines/`** — a practitioner summary of how the **EUIPO applies** those principles in opposition examination (Guidelines, Part C, Section 2). This gives the *practice* (e.g. unitary character, the two-stage similarity gate, the lowest-attention public).
+
+When the workflow reaches a point governed by one of these principles — global assessment, similarity of goods, distinctiveness, composite/dominant elements, family of marks, conceptual counteraction, colour/use — **consult the matching case file and the practice overlay**, apply them to the facts, and cite the case with its pinpoint paragraph. Do not cite a CJEU case the corpus does not contain without flagging that it falls outside this set and needs independent verification, and never assert a holding the corpus does not support. Where the Guidelines summary may diverge from the current EUIPO edition, defer to the current edition and flag it. The summaries are practitioner orientation, not a substitute for the judgments or the Guidelines themselves.
 
 ---
 

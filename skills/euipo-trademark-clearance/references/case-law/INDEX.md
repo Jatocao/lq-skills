@@ -13,6 +13,8 @@ This folder holds one file per landmark Court of Justice (CJEU) / General Court 
 
 **These are practitioner orientation summaries, not substitutes for the judgments.** Always read the operative ruling before relying on a case in a filed document. Pinpoint paragraph numbers are given to speed verification.
 
+> **Note on legal basis.** Several foundational cases (SABEL, Canon, Lloyd Schuhfabrik, Marca Mode) were decided under the Trade Marks Directive (then Dir. 89/104, Art. 4(1)(b)/5(1)(b)), not the Regulation. The CJEU applies the **same interpretation** to Art. 8(1)(b) EUTMR, so they are routinely cited in EUTM opposition practice — but cite them as Directive cases applied by analogy where precision matters.
+
 ## Principle → case map
 
 | If the analysis turns on… | Look at | File |
